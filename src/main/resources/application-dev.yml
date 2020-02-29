@@ -1,0 +1,31 @@
+spring:
+  datasource: #数据库连接
+   driver-class-name: com.mysql.cj.jdbc.Driver
+   url: jdbc:mysql:///blog?serverTimezone=UTC
+   username: root
+   password: 123456
+  jpa: #jpa
+   hibernate: 
+    ddl-auto: update
+   show-sql: true 
+  resources:
+   static-locations: classpath:/resources/, classpath:/templates/, classpath:/static/
+
+  
+  
+   
+
+logging: #日志
+ level:
+  root: debug
+  com.mylog: info
+ file: log/blog-dev.log
+ 
+ 
+server:
+ port: 9091  
+ 
+comment:
+ avatar: /images/avatar-visit.png
+    
+    
