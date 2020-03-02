@@ -28,13 +28,13 @@ public class TagController {
 			@PageableDefault(size=6,sort= {"id"},direction=Sort.Direction.DESC) Pageable pageable) {
 		
 		model.addAttribute("page",tagService.getListTag(pageable));
-		return "/admin/tags.html";
+		return "admin/tags.html";
 	}
 	
 	@RequestMapping("/tags/addPage")
 	public String addPage(Model model) {
 		model.addAttribute("tag", new Tag());
-		return "/admin/tags-input.html";
+		return "admin/tags-input.html";
 	}
 	
 	@RequestMapping("/tags/add")
@@ -43,7 +43,7 @@ public class TagController {
 		Tag t = tagService.getByName(tag.getName());
 		if(t != null) {
 			result.rejectValue("name", "nameError", "不能添加重复标签");
-			return "/admin/tags-input.html";
+			return "admin/tags-input.html";
 		}
 		
 		Tag t2 = tagService.addTag(tag);
@@ -60,7 +60,7 @@ public class TagController {
 	public String updatePage(@PathVariable Long id,Model model) {
 		
 		model.addAttribute("tag", tagService.getById(id));
-		return "/admin/tags-input.html";
+		return "admin/tags-input.html";
 	}
 	
 	@RequestMapping("/tags/update/{id}")
@@ -69,7 +69,7 @@ public class TagController {
 		Tag t = tagService.getByName(tag.getName());
 		if(t != null) {
 			result.rejectValue("name", "nameError", "不能添加重复标签");
-			return "/admin/tags-input.html";
+			return "admin/tags-input.html";
 		}
 		
 		Tag t2 = tagService.updateTag(id, tag);

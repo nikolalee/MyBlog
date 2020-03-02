@@ -33,20 +33,20 @@ public class IndexController {
 		model.addAttribute("types", typeService.listTypeByBlogSize(6));
 		model.addAttribute("tags", tagService.getTopTag(6));
 		model.addAttribute("recommendBlogs", blogService.getTopRecommendBlog(8));
-		return "/index.html";
+		return "index.html";
 	}
 	
 	@RequestMapping("/search")
 	public String searchBlog(String query,Model model,@PageableDefault(size=3,sort= {"updateTime"},direction=Sort.Direction.DESC) Pageable pageable) {
 		model.addAttribute("page", blogService.searchBlog("%"+query+"%", pageable));
 		model.addAttribute("query", query);
-		return "/search.html";
+		return "search.html";
 	} 
 	
 	@RequestMapping("/blog/{id}")
 	public String blogPage(@PathVariable Long id,Model model) {
 		model.addAttribute("blog", blogService.getAndConvert(id));
-		return "/blog.html";
+		return "blog.html";
 	}
 	
 	@RequestMapping("/footer/newBlog")

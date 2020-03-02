@@ -31,7 +31,7 @@ public class TypesController {
 		Page<Type> page = typeService.listType(pageable);
 		model.addAttribute("page", page);
 		
-		return "/admin/types.html";
+		return "admin/types.html";
 		
 	}
 	
@@ -47,7 +47,7 @@ public class TypesController {
 		
 		model.addAttribute("type", new Type(-1,""));
 		
-		return "/admin/types-input.html";
+		return "admin/types-input.html";
 		
 	}
 	
@@ -92,7 +92,7 @@ public class TypesController {
 	public String toUpdate(@PathVariable Long id,Model model) {
 		
 		model.addAttribute("type", typeService.getById(id));
-		return "/admin/types-input.html";
+		return "admin/types-input.html";
 		
 	}
 	
@@ -103,7 +103,7 @@ public class TypesController {
 			result.rejectValue("name", "nameError", "不能添加重复类型");
 		}
 		if(result.hasErrors()) {
-			return "/admin/types-input.html";
+			return "admin/types-input.html";
 		}
 		Type t2 = typeService.update(id,type);
 		if(t2 == null) {

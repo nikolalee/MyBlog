@@ -45,7 +45,7 @@ public class BlogsController {
 		
 		model.addAttribute("tags", tagService.getAllTag());
 		
-		return "/admin/blogs.html";
+		return "admin/blogs.html";
 	}
 	
 	@RequestMapping("/blogs/search")
@@ -55,7 +55,7 @@ public class BlogsController {
 		
 		model.addAttribute("types", typeService.getAllType());
 		
-		return "/admin/blogs.html :: blogList";
+		return "admin/blogs.html :: blogList";
 	}
 	
 	@RequestMapping("/blogs/add")
@@ -63,7 +63,7 @@ public class BlogsController {
 		model.addAttribute("types", typeService.getAllType());
 		model.addAttribute("tags", tagService.getAllTag());
 		model.addAttribute("blog", new Blog());
-		return "/admin/blogs-input.html";
+		return "admin/blogs-input.html";
 	}
 	
 	@PostMapping("/blogs")
@@ -94,7 +94,7 @@ public class BlogsController {
 		Blog b = blogService.getById(blog.getId());
 		b.convertToString();
 		model.addAttribute("blog", b);
-		return "/admin/blogs-input.html";
+		return "admin/blogs-input.html";
 	}
 	
 	@RequestMapping("/blogs/{id}/delete")

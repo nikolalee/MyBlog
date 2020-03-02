@@ -66,7 +66,7 @@ public class ShowController {
 		model.addAttribute("tags",tagService.getAllTag());
 		model.addAttribute("activeTagId", id);
 		
-		return "/tags.html";
+		return "tags.html";
 	}
 	
 	/**
@@ -81,12 +81,12 @@ public class ShowController {
 		model.addAttribute("archiveMap", blogService.getArchiveBlog());
 		model.addAttribute("blogCount", blogService.getBlogNum());
 		
-		return "/archives.html";
+		return "archives.html";
 	}
 	
 	@RequestMapping("/about")
 	public String showAboutMe() {
 		
-		return "/about.html";
+		return "about.html";
 	}
 }

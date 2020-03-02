@@ -19,7 +19,7 @@ public class UserController {
 	
 	@RequestMapping("/login")
 	public String loginPage() {
-		return "/admin/login.html";
+		return "admin/login.html";
 	}
 	
 	@RequestMapping("/user/login")
@@ -44,7 +44,7 @@ public class UserController {
     	
     	req.getSession().invalidate();
     	
-    	return "recirect:index.html";
+    	return "recirect:/index.html";
     }
     
     
