@@ -7,7 +7,6 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -21,8 +20,7 @@ public class User {
 	private String username;
 	private String password;
 	private String email;
-	@ManyToOne
-	private Type type;
+	private Integer type;
 	private String avatar;
 	private Timestamp createTime;
 	private Timestamp updateTime;
@@ -32,8 +30,9 @@ public class User {
 		super();
 		
 	}
-	public User(long id, String nickname, String username, String password, String email, Type type, String avatar,
-			Timestamp createTime, Timestamp updateTime) {
+	
+	public User(long id, String nickname, String username, String password, String email, Integer type, String avatar,
+			Timestamp createTime, Timestamp updateTime, List<Blog> blogs) {
 		super();
 		this.id = id;
 		this.nickname = nickname;
@@ -44,7 +43,9 @@ public class User {
 		this.avatar = avatar;
 		this.createTime = createTime;
 		this.updateTime = updateTime;
+		this.blogs = blogs;
 	}
+
 	public long getId() {
 		return id;
 	}
@@ -82,12 +83,15 @@ public class User {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public Type getType() {
+	
+	public Integer getType() {
 		return type;
 	}
-	public void setType(Type type) {
+
+	public void setType(Integer type) {
 		this.type = type;
 	}
+
 	public String getAvatar() {
 		return avatar;
 	}

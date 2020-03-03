@@ -8,14 +8,20 @@ spring:
    hibernate: 
     ddl-auto: none
    show-sql: true 
+  resources:
+   static-locations: classpath:/resources/, classpath:/templates/, classpath:/static/
 
 logging: #日志
  level:
   root: warn
   com.mylog: info
- file: log/blog-pro.log
+ file: 
+  path: /myblog/log
  
 server:
  port: 9092 
+ 
+comment:
+ avatar: /images/avatar-visit.png
     
     

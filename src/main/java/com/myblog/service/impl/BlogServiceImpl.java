@@ -66,6 +66,10 @@ public class BlogServiceImpl implements BlogService{
 					list.add(cb.equal(root.<Long>get("type").get("id"), blog.getTypeId()));
 				}
 				
+				if(blog.getUserId() != null) {
+					list.add(cb.equal(root.<Long>get("user").get("id"),blog.getUserId()));
+				}
+				
 				query.where(list.toArray(new Predicate[list.size()]));
 				return null;
 			}

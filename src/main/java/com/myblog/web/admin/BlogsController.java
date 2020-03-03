@@ -37,8 +37,9 @@ public class BlogsController {
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	
 	@GetMapping("/blogs")
-	public String getBlogList(BlogQuery blog,@PageableDefault(size=2,sort= {"updateTime"},direction= Sort.Direction.DESC) Pageable pageable,Model model) {
-		 
+	public String getBlogList(HttpSession session,BlogQuery blog,@PageableDefault(size=8,sort= {"updateTime"},direction= Sort.Direction.DESC) Pageable pageable,Model model) {
+		 User user = (User)session.getAttribute("USER_SESSION");
+		 blog.setUserId(user.getId());
 		model.addAttribute("page", blogService.listBlog(pageable,blog));
 		
 		model.addAttribute("types", typeService.getAllType());
@@ -49,8 +50,9 @@ public class BlogsController {
 	}
 	
 	@RequestMapping("/blogs/search")
-	public String search(BlogQuery blog,@PageableDefault(size=2,sort= {"updateTime"},direction= Sort.Direction.DESC) Pageable pageable,Model model) {
-		 
+	public String search(HttpSession session,BlogQuery blog,@PageableDefault(size=8,sort= {"updateTime"},direction= Sort.Direction.DESC) Pageable pageable,Model model) {
+		 User user = (User)session.getAttribute("USER_SESSION");
+		 blog.setUserId(user.getId());
 		model.addAttribute("page", blogService.listBlog(pageable,blog));
 		
 		model.addAttribute("types", typeService.getAllType());
