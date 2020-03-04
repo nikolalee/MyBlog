@@ -1,5 +1,6 @@
 package com.myblog.entity;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +13,11 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 @Entity
 @Table(name="t_comment")
-public class Comment {
+public class Comment implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5527961093860521081L;
 	@Id
 	@GeneratedValue
 	private long id;

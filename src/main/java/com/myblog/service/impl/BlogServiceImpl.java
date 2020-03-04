@@ -13,8 +13,11 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import javax.transaction.Transactional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -34,6 +37,8 @@ public class BlogServiceImpl implements BlogService{
 	
 	@Autowired
 	private BlogRepository blogRepo;
+	
+	private Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	@Override
 	public Blog getById(Long id) {
@@ -106,11 +111,14 @@ public class BlogServiceImpl implements BlogService{
 		blogRepo.deleteById(id);
 	}
 
+	@Cacheable(value="blog",key="#p0")
 	@Override
 	public Page<Blog> listBlog(Pageable pageable) {
+		logger.info("Get data from database");
 		return blogRepo.findAll(pageable);
 	}
 
+	@Cacheable(value="blog",key="#p0")
 	@Override
 	public List<Blog> getTopRecommendBlog(Integer size) {
 		Sort sort = Sort.by(Sort.Direction.DESC,"updateTime");
@@ -158,7 +166,9 @@ public class BlogServiceImpl implements BlogService{
 		}, pageable);
 		}
 	
+	
 	//根据年份获取博客
+	@Cacheable(value="blog",key="#root.methodName")
 	@Override
 	public Map<String, List<Blog>> getArchiveBlog() {
 		List<String> years = blogRepo.getGroupYear();
@@ -175,6 +185,7 @@ public class BlogServiceImpl implements BlogService{
 		return blogRepo.updateVisitNum(id);
 	}
 
+	@Cacheable(value="blog",key="#root.methodName")
 	@Override
 	public Long getBlogNum() {
 		return blogRepo.count();

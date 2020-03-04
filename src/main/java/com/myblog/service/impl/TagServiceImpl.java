@@ -7,6 +7,7 @@ import javax.transaction.Transactional;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -67,6 +68,7 @@ public class TagServiceImpl implements TagService{
 		return tagRepo.findAll();
 	}
 
+	
 	@Override
 	public List<Tag> listTag(String ids) {
 		return tagRepo.findAllById(convertToList(ids));

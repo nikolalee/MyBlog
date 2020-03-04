@@ -1,5 +1,6 @@
 package com.myblog.entity;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +17,11 @@ import javax.persistence.Transient;
 
 @Entity
 @Table(name="t_blog")
-public class Blog {
+public class Blog implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5350358864943682583L;
 	@Id
 	@GeneratedValue
 	private long id;

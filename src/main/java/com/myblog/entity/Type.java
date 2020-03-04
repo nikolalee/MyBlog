@@ -1,5 +1,6 @@
 package com.myblog.entity;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,7 +19,11 @@ import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name="t_type")
-public class Type {
+public class Type implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1353711295751891328L;
 	@Id
 	@GeneratedValue
 	private long id;

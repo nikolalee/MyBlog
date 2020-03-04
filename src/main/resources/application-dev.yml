@@ -10,6 +10,8 @@ spring:
    show-sql: true 
   resources:
    static-locations: classpath:/resources/, classpath:/templates/, classpath:/static/
+  redis:
+   host: 106.54.192.87
 
   
   

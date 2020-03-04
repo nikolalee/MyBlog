@@ -8,6 +8,7 @@ import javax.transaction.Transactional;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import com.myblog.entity.Comment;
@@ -23,6 +24,7 @@ public class CommentServiceImpl implements CommentService{
 	/**
 	 * Q：获取评论及其回复列表
 	 */
+	@Cacheable(value="comment",key="#p0")
 	@Override
 	public List<Comment> getById(Long id) {
 		
